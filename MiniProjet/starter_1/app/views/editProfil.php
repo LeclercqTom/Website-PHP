@@ -23,7 +23,7 @@ This file allows you to display the form to edit your profile
 <body>      
 
   <div class="container rounded bg-white mt-5 mb-5">
-    <button style="background-color: #5D54A4; margin-top: 10px" class="btn btn-primary profile-button" href="/MiniProjet/starter_1/">Exit</button>
+    <button style="background-color: #5D54A4; margin-top: 10px" class="btn btn-primary profile-button" onclick="window.location.href = '/MiniProjet/starter_1/'">Exit</button>
     <?php
     if (isset($_GET['erreur'])) {
         $err = $_GET['erreur'];
