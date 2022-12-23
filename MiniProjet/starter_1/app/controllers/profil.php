@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : profil.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+© 2022 Leclercq Tom & Brunel Bastien
 
 This file allows you to retrieve all the information of the current session to show his information in his profile.
 -->

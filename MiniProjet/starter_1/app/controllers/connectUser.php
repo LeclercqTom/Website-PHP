@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : connectUser.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+© 2022 Leclercq Tom & Brunel Bastien
 
 This file allows to connect a user to his profile.
  -->

@@ -11,6 +11,6 @@ return $routes = [
     '/MiniProjet/starter_1/infoProfil' => 'infoProfil.php',
     '/MiniProjet/starter_1/editProfil' => 'editProfil.php',
     '/MiniProjet/starter_1/modifProfil' => 'modifProfil.php',
-    
+    '/MiniProjet/starter_1/confirmation' => 'confirmation.php',
    
 ];

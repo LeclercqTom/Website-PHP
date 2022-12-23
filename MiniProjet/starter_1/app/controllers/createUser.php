@@ -2,13 +2,21 @@
 Author : Leclercq Tom & Brunel Bastien
 File : createUser.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+© 2022 Leclercq Tom & Brunel Bastien
 
 This file allows to create a new user.
  -->
 
 <?php
 include("logDatabase.php");
+
+// --------- For MailDev -----------
+require './vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+// ---------------------------------
 
 if (isset($_POST['submit'])) {
 
@@ -28,9 +36,10 @@ if (isset($_POST['submit'])) {
             $mailexist = $reqmail->rowCount();
             if ($mailexist == 0) {
                 // If the both password are equivalent
-                if($mdp == $mdp2)
+                if ($mdp == $mdp2)
                 // I encrypt the password
-                    {
+                {
+                    if (strlen($mdp) >= 8) {
                         $options = [
                             'cost' => 12,
                         ];
@@ -38,52 +47,69 @@ if (isset($_POST['submit'])) {
                         $hashpass =  password_hash($mdp, PASSWORD_DEFAULT, $options);
                         // I add all information of this user in the database
                         $insertmbr = $pdo->prepare("INSERT INTO persons(lastname, firstname, address,passwd) VALUES(?,?,?,?)");
-                        $insertmbr->execute(array($nom, $prenom,$mail, $hashpass));
+                        $insertmbr->execute(array($nom, $prenom, $mail, $hashpass));
                         $recupInfo = $pdo->prepare("SELECT id from persons where address = ?");
                         $recupInfo->execute(array($mail));
                         $recupID = $recupInfo->fetch();
-                        
+
                         // I add a tuple corresponding to the id of the new user in the table "info_complementaires_clients"
                         $insertInfo = $pdo->prepare("INSERT INTO info_complementaires_clients(id) values(?)");
                         $insertInfo->execute(array($recupID['id']));
 
-                    $destinataire = "bastien.brunel23@orange.fr";
+                        // ------------------------------------------------------------------------------------------------------
+                        // If mailDev does not working
+                        // header("Location: login");
+                        // ------------------------------------------------------------------------------------------------------
 
-                    $expediteur = "tomleclercq2208@gmail.com";
-                    $objet = 'Confirmation création du compte'; // Objet du message
-                    $headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
-                    $headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
-                    $headers .= 'From: "Nom_de_expediteur"<'.$expediteur.'>'."\n"; // Expediteur
-                    $headers .= 'Deliveroo-To: '.$destinataire."\n"; // Destinataire
-                       
-                    $message = 'Confirme ton adresse mail.';
-                    if (mail($destinataire, $objet, $message, $headers)) // Envoi du message
-                    {
-                        echo "Votre compte a bien été créé ! ";
-                        header('Location: /MiniProjet/starter_1/login');
-                        exit();
-                        // echo "Votre compte a bien été créé ! <a href=\"login\">Me connecter</a>";
+
+
+                        //---------------------------------------------- MailDev ----------------------------------------------------
+
+                        $destinataire = $mail;
+
+                        $PHPmail = new PHPMailer(true);
+
+                        try {
+                            //Server settings
+
+                            $PHPmail->isSMTP();                                            //Send using SMTP
+                            $PHPmail->Host = 'localhost';                     //Set the SMTP server to send through
+
+                            $PHPmail->Port = 1025;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                            //Recipients
+                            $PHPmail->setFrom('validation-inscription@iut.com', 'Tom');
+                            $PHPmail->addAddress("$mail", "$nom, $prenom");     //Add a recipient
+
+
+
+                            //Attachments
+                            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+                            //Content
+                            $PHPmail->isHTML(true);                                  //Set email format to HTML
+                            $PHPmail->Subject = 'Validation de votre mail';
+                            $PHPmail->Body    = "<div>Bonjour,<br>
+                                                  <br>
+                                                  Afin de valider votre inscription, merci de bien vouloir cliquer sur  : 
+                                                  <a href=http://localhost:8000/MiniProjet/starter_1/confirmation?user=" . $mail . ">ce lien</a></div>";
+
+
+
+                            $PHPmail->send();
+                            header('Location: /MiniProjet/starter_1/login');
+                            // header("Location: verify.php");
+                        } catch (Exception $e) {
+                            echo "Message could not be sent. Mailer Error: {$PHPmail->ErrorInfo}";
+                            header('Location: /MiniProjet/starter_1/register');
+                        }
+
+                        // ----------------------------------------------------------------------------------------------------------------------
+
+                    } else {
+                        header('Location: register?erreur=5');
                     }
-                    else // Non envoyé
-                    {
-                        echo "Votre compte n'a pas pu être envoyé";
-                        // header('Location: register?erreur=5');
-                    }
-                    // $header = "MIME-Version: 1.0\r\n";
-                    // $header .= 'From:"Start1"<tomleclercq2208@gmail.com>' . "\n";
-                    // $header .= 'Content-Type:text/html; charset="uft-8"' . "\n";
-                    // $header .= 'Content-Transfer-Encoding: 8bit';
-                    // $message = '
-                    //   <html>
-                    //      <body>
-                    //         <div align="center">
-                    //             confirme ton compte !
-                    //         </div>
-                    //      </body>
-                    //   </html>
-                    //   ';
-                    // //<a href="http://127.0.0.1/Tutos%20PHP/%2314%20%28Espace%20membre%29/confirmation.php?pseudo='.urlencode($pseudo).'&key='.$key.'">Confirmez votre compte !</a>
-                    // mail($mail, "Confirmation de compte", $message, $header);
                 } else {
                     header('Location: register?erreur=4');
                 }
@@ -94,7 +120,7 @@ if (isset($_POST['submit'])) {
             header('Location: register?erreur=2');
         }
     } else {
-       
+
         header('Location: register?erreur=1');
     }
 }

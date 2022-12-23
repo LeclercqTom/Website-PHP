@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : navbar.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+
 
 This file allows to display the form to connect
 -->

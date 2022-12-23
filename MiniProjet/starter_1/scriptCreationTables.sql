@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS "persons" (
     "firstname" varchar(255),
     "address" varchar(255),
     "passwd" varchar(255),
-    "id" serial primary key
+    "id" serial primary key,
+    "verify" boolean
 );
 
 CREATE TABLE IF NOT EXISTS "info_complementaires_clients" (

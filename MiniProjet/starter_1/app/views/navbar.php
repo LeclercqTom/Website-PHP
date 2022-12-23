@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : navbar.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+
 
 This file allows you to display the navigation bar
 -->
@@ -48,7 +48,7 @@ This file allows you to display the navigation bar
                         </ul>
                         <ul class="nav navbar-nav">
                             <li>
-                                <form action="" class="navbar-form">
+                                <form action="search" class="navbar-form">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">

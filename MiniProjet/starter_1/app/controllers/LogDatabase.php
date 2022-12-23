@@ -1,3 +1,11 @@
+<!-- 
+Author : Leclercq Tom & Brunel Bastien
+File : LogDatabase.php
+Date : 22/12/2022
+© 2022 Leclercq Tom & Brunel Bastien
+
+This file allows to connect each file to the database
+-->
 <?php
 // connect variable 
 $host = "localhost";

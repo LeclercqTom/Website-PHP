@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : navbar.php
 Date : 21/12/2022
-© 2022 Leclercq Tom
+
 
 This file allows you to display the form to edit your profile
 -->

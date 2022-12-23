@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : editProfil.php
 Date : 21/12/2022
-© 2022 Leclercq Tom
+© 2022 Leclercq Tom & Brunel Bastien
 
 This file allows to retrieve all informations of the current session for the editProfil view.
  -->

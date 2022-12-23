@@ -2,7 +2,6 @@
 Author : Leclercq Tom & Brunel Bastien
 File : register.php
 Date : 21/12/2022
-© 2022 Leclercq Tom
 
 This file allows you to display the form to create a user
 -->
@@ -78,6 +77,8 @@ if (isset($_GET['erreur'])) {
         echo "<p style='color:red'>Adresse mail déjà utilisée !</p>";
     if ($err == 4)
         echo "<p style='color:red'>Vos mots de passe ne correspondent pas !</p>";
+    if ($err == 5)
+        echo "<p style='color:red'>La taille de votre mot de passe n'est pas valide !</p>";
 }
 ?>
 

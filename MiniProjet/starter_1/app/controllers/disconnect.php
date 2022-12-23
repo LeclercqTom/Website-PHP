@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : disconnect.php
 Date : 18/12/2022
-© 2022 Leclercq Tom
+© 2022 Leclercq Tom & Brunel Bastien
 
 This file allows to disconnect a user.
  -->

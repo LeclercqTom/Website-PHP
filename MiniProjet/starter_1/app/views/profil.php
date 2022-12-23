@@ -2,7 +2,7 @@
 Author : Leclercq Tom & Brunel Bastien
 File : profil.php
 Date : 21/12/2022
-© 2022 Leclercq Tom
+
 
 This file allows you to retrieve all the information of the current session to show his information in his profile.
 -->
@@ -29,7 +29,7 @@ This file allows you to retrieve all the information of the current session to s
               <li class="breadcrumb-item"><a href="/MiniProjet/starter_1/">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page"><?php echo $userinfo['lastname'] . " " . $userinfo['firstname']; ?></li>
               <li class="breadcrumb-item"><a href="#">Your Gallery</a></li>
-              <button style="margin-left: 700px; border : none; height : 30px; " class="btn btn-primary" onclick="window.location.href = 'disconnect'">Disconnect</button>
+              <button style="margin-left: 600px; border : none; height : 30px; " class="btn btn-primary" onclick="window.location.href = 'disconnect'">Disconnect</button>
             </ol>
             
           </nav>
