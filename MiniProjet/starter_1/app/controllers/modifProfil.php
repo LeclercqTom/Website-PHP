@@ -8,14 +8,8 @@ This file allows to retrieve all informations of the current session for the pro
 -->
 <?php
 session_start();
-// connect variable
-$host = "localhost";
-$dbname = "php_cours2_starter1";
-$username = "root";
-$password = "root";
 
-// the query to link this file to the database
-$pdo = new PDO("pgsql:host=$host;port=5432; dbname=$dbname;user=$username; password=$password");
+include("logDatabase.php");
 // If there is a connected user
 if (isset($_POST['submit'])) {
    // I get all his information

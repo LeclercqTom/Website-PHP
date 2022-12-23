@@ -8,14 +8,7 @@ This file allows to connect a user to his profile.
  -->
 
 <?php
-// connect variable 
-$host = "localhost";
-$dbname = "php_cours2_starter1";
-$username = "root";
-$password = "root";
-
-// the query to link this file to the database
-$pdo = new PDO("pgsql:host=$host;port=5432; dbname=$dbname;user=$username; password=$password");
+include("logDatabase.php");
 
 session_start();
 // If the user clicked on the button (isset($_POST['submit']) = True)
