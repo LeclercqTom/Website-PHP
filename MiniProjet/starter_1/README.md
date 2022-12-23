@@ -68,7 +68,7 @@ All the steps to launch the project (to be checked)
 5. Launch the site locally using the command: php -S 127.0.0.1:8000
 6. Access the site via this link http://localhost:8000/MiniProjet/starter_1/
 
-## Expliquer les fonctionnalités du site
+## Explain the fonctionnalities (features) of the website
 
 Register with password complexity check and email verification
 
